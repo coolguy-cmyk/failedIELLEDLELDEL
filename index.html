@@ -46,6 +46,7 @@ h1 {
   color: #fff;
   animation: shake 2.5s infinite;
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .scanline {
@@ -129,7 +130,6 @@ ul li::before {
 }
 
 .music-btn {
-  margin-top: 1rem;
   background: #7289da;
   color: white;
 }
@@ -185,26 +185,33 @@ You're a hacker looking for safe hacks? Look no further, we gotcha
   Join now
 </a>
 
-<!-- MUSIC BUTTON -->
-<button class="join-btn music-btn" onclick="playMusic()">
-  Play Gangnam Style 🎵
+<!-- MUSIC TOGGLE -->
+<button class="join-btn music-btn" onclick="toggleMusic()">
+  Play / Stop Music 🎵
 </button>
 
-<!-- hidden YouTube player -->
-<div id="music" style="display:none; margin-top:20px;">
-  <iframe width="300" height="200"
-    src="https://www.youtube.com/embed/9bZkp7q19f0?enablejsapi=1"
-    allow="autoplay">
-  </iframe>
-</div>
+<!-- hidden audio -->
+<audio id="bgm" loop>
+  <source src="gangnam.mp3" type="audio/mpeg">
+</audio>
 
 <p class="discord">
 discord.gg/<a href="https://discord.gg/avmFxwSG7M" target="_blank">avmFxwSG7M</a>
 </p>
 
 <script>
-function playMusic() {
-  document.getElementById("music").style.display = "block";
+let playing = false;
+const audio = document.getElementById("bgm");
+
+function toggleMusic() {
+  if (!playing) {
+    audio.play();
+    playing = true;
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+    playing = false;
+  }
 }
 </script>
 
